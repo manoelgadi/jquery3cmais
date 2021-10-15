@@ -1,0 +1,30 @@
+<html>
+<head> 
+<title> Ejemplo 1 de JQUERY </title>
+</head>
+<body>
+<h1 id="hola"> Mi primer ejemplo de JQUERY </h1>
+<p> Pinchame y te sorprenderás 1 </p>
+<p> Pinchame y te sorprenderás 2 </p>
+<p> Pinchame y te sorprenderás 3 </p>
+<button> Enseñar </button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script>
+//document.getElementById("hola").innerHTML = 'hola JS';
+// $("#hola").text("hola JQUERY") -- Equivalente en jQuery.
+
+//Retarda la ejecución.
+$(document).ready(
+	$("#hola").click(function(){$(this).text("hola JQUERY")})
+ );
+ 
+$(document).ready(
+	$("p").click(function(){$(this).hide()})
+ );
+
+
+
+</script>
+
+</body>
+</html>
