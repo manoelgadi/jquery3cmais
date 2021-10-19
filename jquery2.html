@@ -1,0 +1,75 @@
+<html>
+<head> 
+<title> Ejemplo 2 de JQUERY </title>
+</head>
+<body>
+<h1> Ejemplo de JQUERY - Animación </h1>
+<p id="msg">  </p>
+
+<button id="cambia"> Cambia color </button>
+
+<br>
+<br>
+<br>
+<button id="izquierda"> <- </button>
+<button id="derecha"> -> </button>
+<div>
+	<img id="interrogacion" src="image-cover.jpg" alt="" width="100" height ="123" 
+		style="position: relative; left: 10px;">
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+// jQuery(selector).accion() - $(selector).accion() - Chainning
+$(document).ready(
+	//$(SELECTOR).click(FUNCION)
+	//$("button").click(function(){})
+	$("#cambia").click(function(){
+		$("h1").text("Ejemplo de JQUERY - Animación - v2")
+		   .css("border","10px solid blue")
+		   .css("color","red")
+		   .css("background","yellow")
+	}),
+	$("#derecha").click(function(){
+		$("#interrogacion").animate({
+				opacity:"0.25",
+				left:"+=200",
+				height:"swing"
+			},3000,function(){$(this).after("<p> animación terminada. </p>")})	
+	}),
+	$("#izquierda").click(function(){
+		$("#interrogacion").animate({
+				opacity:"1.0",
+				left:"-=200",
+				height:"swing"
+			},3000,function(){$(this).after("<p> animación terminada. </p>")})	
+	}),
+	$(document).keydown(function(e){
+		//$("#msg").text(e.which)
+		switch(e.which){
+			case 37:
+				$("#interrogacion").finish().animate({left:"-=50"});
+				break;
+			case 38:
+				$("#interrogacion").finish().animate({top:"-=50"});
+				break;
+			case 39:
+				$("#interrogacion").finish().animate({left:"+=50"});
+				break;
+			case 40:
+				$("#interrogacion").finish().animate({top:"+=50"});
+				break;
+		}
+	})
+)
+
+//$("#interrogacion").animate(CSS_COMO_JSON,TIME,FUNCION_PARA_DESPUES)
+
+
+</script>
+
+</body>
+</html>
