@@ -1,78 +1,39 @@
+var super_id = 2;
 function enviarFormulario() {
-	
 	// Nunca hacerlo por partes!
 	$("#table_body").append('<tr id="nf"> </tr>');
-	
 	var nf = $("#nf");
-	
 	nf.append('<td> ' + $('#campo_nombre').val() + ' </td>');
 	nf.append('<td> ' + $('#campo_apellidos').val() + ' </td>');
 	nf.append('<td> ' + $('#campo_fecha').val() + ' </td>');
-	
 	// Ejercicio 1 - Y el campo Genero?
+	s = ["campo_sexo_hombre", "campo_sexo_mujer","campo_sexo_otro","campo_sexo_no_especificado"];
+	if ($("input[name='sexo']:checked").val() != undefined){
+		nf.append('<td> ' + $("input[name='sexo']:checked").val() + ' </td>');
+	} else{
+		nf.append('<td>  </td>');
+	}
+	// Ejercicio 2 - Y el imagen?	
+	if($("#campo_tiempo_parcial").prop('checked')){
+		nf.append('<td><img src="ok.png" width="32" alt="Sí"></td>');
+	} else {
+		nf.append('<td><img src="ko.png" width="32" alt="No"></td>');
+	}
 	
+	// Ejercicio 3 - Y el boton?	
+	nf.append('<td><button class="borrar" name="' + super_id.toString()+ '"> BorrarJquery2 </button></td>');
 	
-	
+	// Ejercicio 4 - Y para que el boton funcione?	
+	$(document).ready(function(){
+		$("button.borrar").click(function(){
+			//$(this).remove();
+			//$(this).parent().parent().remove();
+			$("#"+ this.name ).remove();
+		})
+	})
 	nf.removeAttr("id");
-	
-	
-	
-	
-	
-	
-	
-	
-	
-    const nuevaFila = document.createElement('tr');
-    const celdaNombre = document.createElement('td');
-    const celdaApellidos = document.createElement('td');
-    const celdaFecha = document.createElement('td');
-    const celdaSexo = document.createElement('td');
-    const celdaTiempoParcial = document.createElement('td');
-    const celdaBorrar = document.createElement('td');
-
-    celdaNombre.innerText = $('#campo_nombre').val();
-    celdaApellidos.innerText = $('#campo_apellidos').val();
-    celdaFecha.innerText = $('#campo_fecha').val();
-
-    if ($('#campo_sexo_hombre').prop('checked')) {
-        celdaSexo.innerText = 'Hombre';
-    } else if ($('#campo_sexo_mujer').prop('checked')) {
-        celdaSexo.innerText = 'Mujer';
-    } else if ($('#campo_sexo_otro').prop('checked')) {
-        celdaSexo.innerText = 'Otro';
-    } else if ($('#campo_sexo_no_especificado').prop('checked')) {
-        celdaSexo.innerText = 'No especificado';
-    }
-
-    const imagenTiempoParcial = document.createElement('img');
-    imagenTiempoParcial.width = 32;
-
-    if ($('#campo_tiempo_parcial').prop('checked')) {
-        imagenTiempoParcial.alt = 'Sí';
-        imagenTiempoParcial.src = 'ok.png';
-    } else {
-        imagenTiempoParcial.alt = 'No';
-        imagenTiempoParcial.src = 'ko.png';
-    }
-
-    celdaTiempoParcial.appendChild(imagenTiempoParcial);
-
-    const botonBorrar = document.createElement('button');
-    botonBorrar.innerText = 'Borrar';
-    botonBorrar.click(function () {
-        // Código que elimina la fila
-        nuevaFila.remove();
-    });
-    celdaBorrar.appendChild(botonBorrar);
-
-    nuevaFila.appendChild(celdaNombre);
-    nuevaFila.appendChild(celdaApellidos);
-    nuevaFila.appendChild(celdaFecha);
-    nuevaFila.appendChild(celdaSexo);
-    nuevaFila.appendChild(celdaTiempoParcial);
-    nuevaFila.appendChild(celdaBorrar);
-    $('#table_body').append(nuevaFila);
+	nf.attr("id",super_id); 
+	super_id +=1;
 }
 
 
